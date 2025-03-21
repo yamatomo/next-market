@@ -13,7 +13,6 @@ export async function POST(request) {
                 const secretKey = new TextEncoder().encode("next-market")
                 const payload = { email: reqBody.email, }
                 const token = await new SignJWT(payload).setProtectedHeader({alg: "HS256"}).setExpirationTime("1d").sign(secretKey)
-                console.log(token)
                 return NextResponse.json({message: "user login OK!", token: token})
             }else{
                 return NextResponse.json({message: "user login NG! : The password is incorrect"})
